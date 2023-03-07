@@ -1,0 +1,47 @@
+<p class="text-danger"> <%=flash[:notice] %></p>
+
+<div class="col-lg-12">
+<div class="card rounded-0 mt-5 mb-5">
+<div class="card-body" >
+<h2 class="text-center">Listing Employees </h2>
+
+</div>
+</div>
+
+<%= link_to "New Employee", new_employee_path, class: "btn btn-primary mb-4 rounded-0"%>
+
+<table class= 'table table-bordered'>
+<thead>
+<tr>
+<th>Name</th>
+<th>Email</th>
+<th>Address</th>
+<th>Action</th>
+</tr>
+</thead>
+
+<tbody>
+<% @employees.each do |emp|%>
+    <tr>
+        <td><%=emp.name%></td>
+        <td><%=emp.personal_email%></td>
+        <td><%=emp.full_address%></td>
+        <td>
+            <div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    Actions
+                </button>
+            <ul class="dropdown-menu">
+                <li> <%= link_to "edit" , edit_employee_path(emp), class:"dropdown-item"%></li>
+                <li>  <%=link_to "view" , employee_path(emp),class:"dropdown-item"%></li>
+                <li> <%=link_to "Delete" , employee_path(emp),class:"dropdown-item",  method: :delete,data: {confirm: "are you sure?"}%></li>
+            </ul>
+            </div>
+        </td>
+
+    </tr>
+<%end%>
+</tbody>
+</table>
+
+</div>
